@@ -1,0 +1,21 @@
+CREATE TABLE `userbank`.`user` (
+  `userid` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `sureName` VARCHAR(45) NULL,
+  PRIMARY KEY (`userid`),
+  UNIQUE INDEX `userid_UNIQUE` (`userid` ASC) VISIBLE);
+
+
+  CREATE TABLE `userbank`.`account` (
+    `accountId` INT NOT NULL AUTO_INCREMENT,
+    `account` INT NULL,
+    `userId` INT NULL,
+    PRIMARY KEY (`accountId`),
+    UNIQUE INDEX `accountId_UNIQUE` (`accountId` ASC) VISIBLE,
+    INDEX `userId_idx` (`userId` ASC) VISIBLE,
+    CONSTRAINT `userId`
+      FOREIGN KEY (`userId`)
+      REFERENCES `userbank`.`user` (`userid`)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE);
+
